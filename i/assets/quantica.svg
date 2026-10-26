@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="180" viewBox="0 0 220 180" role="img" aria-labelledby="title">
+    <title id="title">Forja Quântica USB — ilustração da máquina</title>
+    <defs>
+      <linearGradient id="body" x2=".8" y2="1"><stop stop-color="#efc0d0"/><stop offset="1" stop-color="#b57099"/></linearGradient>
+      <linearGradient id="metal" x2=".5" y2="1"><stop stop-color="#e5ece7"/><stop offset=".5" stop-color="#b5c4c7"/><stop offset="1" stop-color="#889eaa"/></linearGradient>
+      <radialGradient id="halo"><stop stop-color="#dbadd9" stop-opacity=".35"/><stop offset="1" stop-color="#dbadd9" stop-opacity="0"/></radialGradient>
+    </defs>
+    <ellipse cx="110" cy="89" rx="100" ry="83" fill="url(#halo)"/>
+    <ellipse cx="110" cy="158" rx="76" ry="9" fill="#526172" opacity=".12"/>
+    <g stroke="#354052" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"><path d="M64 138h93l11 13H53Z" fill="url(#body)"/><path d="M58 153h105" stroke-width="5"/>
+      <path d="M76 133V82h68v51" fill="#46506d"/>
+      <path d="M88 88h44v41H88Z" fill="#bba7d8" stroke-width="2"/>
+      <rect x="93" y="99" width="34" height="22" rx="4" fill="#f9e6bd" stroke-width="2"/>
+      <path d="M101 105h17m-17 5h10" stroke="#c3a279" stroke-width="2"/>
+      <path d="M127 104h7v12h-7" fill="url(#metal)" stroke-width="1.5"/>
+      <path d="M60 135V63l14-16h11v88m53 0V47h11l14 16v72" fill="url(#body)"/>
+      <path d="M69 67v52m85-52v52" stroke="#f5d6e8" stroke-width="2"/>
+      <path d="M87 56h48v26H87Z" fill="url(#metal)"/>
+      <path d="M93 70h36" stroke="#71809a" stroke-width="2"/>
+      <circle cx="110" cy="48" r="30" fill="#e8d6f3" stroke="#bca2ce" stroke-width="2"/>
+      <g stroke="#8d79ad" stroke-width="1.8" fill="none"><ellipse cx="110" cy="48" rx="24" ry="9" transform="rotate(-30 110 48)"/><ellipse cx="110" cy="48" rx="24" ry="9" transform="rotate(30 110 48)"/><ellipse cx="110" cy="48" rx="24" ry="9" transform="rotate(90 110 48)"/></g>
+      <circle cx="110" cy="48" r="7" fill="#fff4cb" stroke="#d4ad6a" stroke-width="1.5"/>
+      <g fill="#faf1cc" stroke="#a087b4" stroke-width="1"><circle cx="90" cy="59" r="3"/><circle cx="128" cy="59" r="3"/><circle cx="110" cy="24" r="3"/></g>
+      <circle cx="72" cy="128" r="3" fill="#9ce6d6" stroke-width="1.5"/><circle cx="151" cy="128" r="3" fill="#9ce6d6" stroke-width="1.5"/>
+      <g stroke="#c5a6cc" stroke-width="2"><path d="M40 56v10m-5-5h10m135-24v10m-5-5h10m-2 61v8m-4-4h8"/></g>
+      <path d="m32 91 3-6 3 6 6 3-6 3-3 6-3-6-6-3Z" fill="#dfbf7e" stroke="none"/></g>
+  </svg>

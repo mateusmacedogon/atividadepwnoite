@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="150" height="190" viewBox="0 0 150 190" role="img" aria-labelledby="title">
+  <title id="title">Guilherme, de pele marrom escura, com capacete amarelo e macacão azul, segurando um pendrive</title>
+  <defs>
+    <linearGradient id="skin" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#a76b46"/><stop offset=".55" stop-color="#8b5437"/><stop offset="1" stop-color="#693b2b"/></linearGradient>
+    <linearGradient id="helmet" x2=".7" y2="1"><stop stop-color="#ffe59a"/><stop offset=".5" stop-color="#f4bf48"/><stop offset="1" stop-color="#db9130"/></linearGradient>
+    <linearGradient id="denim" x2="1" y2="1"><stop stop-color="#6a98c5"/><stop offset="1" stop-color="#345582"/></linearGradient>
+    <linearGradient id="shirt" x2="1" y2="1"><stop stop-color="#f9edcb"/><stop offset="1" stop-color="#ddc7a1"/></linearGradient>
+  </defs>
+  <style>
+    .line{stroke:#30394a;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+    .hero-character{animation:breathe 4.5s ease-in-out infinite;transform-box:view-box;transform-origin:75px 180px}
+    .hero-eyes{animation:blink 6.2s linear infinite;transform-box:view-box;transform-origin:75px 71px}
+    .hero-wave{animation:wave 6.2s ease-in-out infinite;transform-box:view-box;transform-origin:98px 105px}
+    @keyframes breathe{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.008)}}
+    @keyframes blink{0%,43%,47%,100%{transform:scaleY(1)}44.5%,45.5%{transform:scaleY(.08)}}
+    @keyframes wave{0%,58%,88%,100%{transform:rotate(0deg)}65%,77%{transform:rotate(-6deg)}71%,83%{transform:rotate(-1deg)}}
+    @media(prefers-reduced-motion:reduce){.hero-character,.hero-eyes,.hero-wave{animation:none}}
+  </style>
+  <ellipse cx="75" cy="180" rx="48" ry="7" fill="#bcb199" opacity=".28"/>
+  <circle cx="75" cy="86" r="59" fill="#f4e4bc" opacity=".45"/>
+  <g class="line hero-character">
+    <path d="m53 149-2 22h19l4-22m7 0 2 22h19l-5-22" fill="url(#denim)"/>
+    <path d="M51 170c-9 2-12 6-10 10h30v-10m12 0v10h30c2-4-4-9-11-10" fill="#4a4050"/>
+    <path d="M42 179h29m12 0h30" stroke="#a08a73" stroke-width="2"/>
+    <path d="M54 103c-13 2-22 13-24 27l13 7 12-21" fill="url(#shirt)"/>
+    <path d="M31 130c-7 13-5 26 3 27 8 2 9-7 10-19" fill="url(#skin)"/>
+    <path d="M32 148v5m5-4v5" stroke="#653a2b" stroke-width="1.5"/>
+    <path d="M52 105q23-11 46 0l4 48H48Z" fill="url(#shirt)"/>
+    <path d="M64 85v20q11 12 22 0V84" fill="url(#skin)"/>
+    <path d="M65 94q10 6 20 0" stroke="#633b2c" stroke-width="3"/>
+    <path d="m54 107 4 23h34l5-23 7 43q-26 9-57 0Z" fill="url(#denim)"/>
+    <path d="m54 104 5 28m37-28-5 28" stroke="#41668d" stroke-width="7"/>
+    <path d="m53 104 5 25m38-25-5 25" stroke="#91b4d4" stroke-width="2"/>
+    <rect x="63" y="132" width="23" height="16" rx="3" fill="#537da6" stroke-width="2"/>
+    <path d="m65 136 10 5 9-5m-30 12 1-9m42 9-1-9" stroke="#a7c1d5" stroke-width="1.4" fill="none"/>
+    <circle cx="59" cy="126" r="2.5" fill="#eab55c" stroke-width="1.2"/><circle cx="91" cy="126" r="2.5" fill="#eab55c" stroke-width="1.2"/>
+    <ellipse cx="47" cy="68" rx="7" ry="10" fill="url(#skin)"/><ellipse cx="103" cy="68" rx="7" ry="10" fill="url(#skin)"/>
+    <path d="M48 49c-3 30 4 49 27 50s31-20 28-50Z" fill="url(#skin)"/>
+    <path d="M49 53q3 13 5 9l2-14m44 5q-3 13-5 9l-2-14" fill="#392c29" stroke="#392c29"/>
+    <path d="M57 63q6-5 12-1m12 0q6-4 12 1" stroke="#392c29" stroke-width="3" fill="none"/>
+    <g class="hero-eyes">
+      <ellipse cx="63" cy="71" rx="3.3" ry="4.2" fill="#262c36" stroke="none"/><ellipse cx="87" cy="71" rx="3.3" ry="4.2" fill="#262c36" stroke="none"/>
+      <circle cx="64" cy="70" r="1" fill="#fff2d9" stroke="none"/><circle cx="88" cy="70" r="1" fill="#fff2d9" stroke="none"/>
+    </g>
+    <path d="m75 72-2 7 5 1" stroke="#61382c" stroke-width="1.8" fill="none"/>
+    <path d="M55 81q5 14 20 15 16-1 21-15l-3 2q-5 8-18 8-13 0-18-8Z" fill="#49332b" stroke="none"/>
+    <path d="M64 83q11 11 22 0Z" fill="#fff2da" stroke="#583528" stroke-width="1.8"/>
+    <path d="M56 76h5m28 0h5" stroke="#bd8057" stroke-width="2"/>
+    <path d="M44 45c0-21 13-30 31-30s31 9 31 30l7 6q-38 11-76 0Z" fill="url(#helmet)"/>
+    <path d="M69 18V12h12v31H69Z" fill="#ffdc78" stroke-width="2"/>
+    <path d="M53 36q2-10 9-13m27 0q8 4 10 14" stroke="#fff1bd" stroke-width="3" fill="none"/>
+    <path d="M43 45q32 6 64 0" fill="none" stroke="#af792f" stroke-width="2"/>
+    <path d="M47 52q28 5 55 0" fill="none" stroke="#ffd878" stroke-width="2"/>
+    <g class="hero-wave">
+      <path d="M97 103c12 2 20 12 23 22l-14 7-12-16" fill="url(#shirt)"/>
+      <path d="M119 125c8 2 10-2 11-7l8 3c-1 15-12 21-28 11" fill="url(#skin)"/>
+      <g transform="rotate(18 133 111)"><rect x="127" y="97" width="13" height="24" rx="4" fill="#4e7a8b" stroke-width="2"/><path d="M130 97v-8h7v8" fill="#d4ddd8" stroke-width="2"/><path d="M132 91v3m3-3v3" stroke-width="1"/><circle cx="133.5" cy="113" r="2" fill="#8de1c4" stroke="none"/></g>
+      <path d="M131 120q-6 0-5-6 0-4 4-3" fill="url(#skin)" stroke-width="2"/>
+    </g>
+  </g>
+  <path d="m20 94 2-5 2 5 5 2-5 2-2 5-2-5-5-2Zm108-29 1.5-4 1.5 4 4 1.5-4 1.5-1.5 4-1.5-4-4-1.5Z" fill="#dfaf50"/>
+</svg>

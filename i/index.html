@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fábrica do Ventoy — Guilherme Diassis Cardin</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Gochi+Hand&display=swap" rel="stylesheet">
+<style>
+  * { font-family: 'Patrick Hand', cursive; }
+  .titulo { font-family: 'Gochi Hand', cursive; }
+  .sketch-border {
+    border: 3px solid #1f2937;
+    border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+    box-shadow: 3px 4px 0 #1f293733;
+  }
+  .sketch-border-2 {
+    border: 3px solid #1f2937;
+    border-radius: 15px 225px 15px 255px / 255px 15px 225px 15px;
+    box-shadow: 3px 4px 0 #1f293733;
+  }
+  .sketch-btn {
+    border: 3px solid #1f2937;
+    border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+    transition: transform .08s, box-shadow .08s;
+    box-shadow: 3px 3px 0 #1f2937;
+    cursor: pointer;
+  }
+  .sketch-btn:hover { transform: translate(-1px,-1px); box-shadow: 5px 5px 0 #1f2937; }
+  .sketch-btn:active { transform: translate(2px,2px); box-shadow: 0 0 0 #1f2937; }
+  .sketch-btn:disabled { opacity:.45; cursor:not-allowed; transform:none; box-shadow:3px 3px 0 #1f2937; }
+  .papel {
+    background-color: #fdf6e3;
+    background-image: repeating-linear-gradient(0deg, transparent, transparent 31px, #d9cdb4 32px);
+  }
+  @keyframes fumaca {
+    0% { opacity:.8; transform: translateY(0) scale(.6); }
+    100% { opacity:0; transform: translateY(-42px) scale(1.5); }
+  }
+  .fumaca { animation: fumaca 2.4s linear infinite; transform-origin:center; }
+  .fumaca2 { animation: fumaca 2.4s linear infinite 1.2s; }
+  @keyframes pop {
+    0% { opacity:1; transform: translateY(0) scale(1); }
+    100% { opacity:0; transform: translateY(-70px) scale(1.4); }
+  }
+  .pop-flutuante { position:absolute; pointer-events:none; animation: pop .9s ease-out forwards; font-weight:bold; }
+  @keyframes girarEngr { from{transform:rotate(0)} to{transform:rotate(360deg)} }
+  .engrenagem { animation: girarEngr 6s linear infinite; transform-origin: center; transform-box: fill-box; }
+  .engrenagem-r { animation: girarEngr 6s linear infinite reverse; transform-origin: center; transform-box: fill-box; }
+  @keyframes balanca { 0%,100%{transform:rotate(-1.5deg)} 50%{transform:rotate(1.5deg)} }
+  .clicavel:active { transform: scale(.96); }
+  .clicavel { transition: transform .06s; cursor:pointer; user-select:none; }
+  .toast {
+    animation: toastIn .3s ease-out;
+  }
+  @keyframes toastIn { from{opacity:0; transform:translateY(12px);} to{opacity:1; transform:translateY(0);} }
+
+  /* Ilustrações vetoriais: traços quentes, materiais e volume. */
+  .factory-art { display:block; width:100%; max-width:22.5rem; height:auto; filter:drop-shadow(0 7px 5px #59452b0d); }
+  #btnFabrica { display:block; width:100%; max-width:22.5rem; border:0; padding:0; background:transparent; border-radius:1.5rem; }
+  #btnFabrica:hover .factory-art { filter:drop-shadow(0 9px 7px #59452b21); }
+  #btnFabrica:focus-visible { outline:3px solid #b38343; outline-offset:3px; }
+  .hero-art { width:7.5rem; height:auto; display:block; }
+  .hero-row { gap:.5rem; }
+  .hero-row > div:last-child { min-width:0; line-height:1.5; }
+  .auto-ring { position:absolute; inset:0; pointer-events:none; }
+  .auto-ring[hidden] { display:none; }
+  .auto-pointer { position:absolute; width:1.25rem; height:1.75rem; margin-left:-.625rem; margin-top:-.875rem; transform:rotate(var(--angle)); animation:autoTap var(--auto-period,1s) ease-in-out infinite; animation-delay:var(--delay); filter:drop-shadow(0 2px 1px #35405226); }
+  @keyframes autoTap { 0%,65%,100%{transform:rotate(var(--angle)) translateY(0)} 80%{transform:rotate(var(--angle)) translateY(4px)} }
+  .auto-shop { background:linear-gradient(120deg,#effaf2,#fff7db); padding:1rem; margin-bottom:1.5rem; }
+  .auto-shop-heading { display:flex; align-items:center; gap:.75rem; }
+  .auto-shop-art { width:3rem; height:auto; flex-shrink:0; }
+  .auto-shop h2 { font-size:1.5rem; line-height:1.2; color:#385d54; }
+  .auto-shop p { font-size:.875rem; color:#5e7369; line-height:1.4; }
+  .auto-stats { display:flex; flex-wrap:wrap; gap:.5rem; margin:.875rem 0; }
+  .auto-stats > span { padding:.25rem .6rem; background:#ffffffa8; border:1px solid #c7d8c7; border-radius:.6rem; font-size:.875rem; color:#385d54; }
+  .auto-actions { display:grid; gap:.625rem; }
+  .auto-actions button { padding:.6rem .75rem; text-align:left; }
+  .auto-actions small { display:block; font-size:.875rem; font-weight:normal; }
+  .auto-status { min-height:1.5rem; text-align:center; font-size:.875rem; color:#51766a; }
+  .model-preview { display:grid; grid-template-columns:6.5rem minmax(0,1fr); align-items:center; gap:.75rem; padding:.75rem; margin-top:.5rem; border:1px solid #b7caba; border-radius:1rem; background:linear-gradient(125deg,#fffdf6,#f3f7ed); box-shadow:inset 0 1px 0 #fff; }
+  .preview-art { display:block; width:100%; height:auto; }
+  .preview-copy { min-width:0; }
+  .model-eyebrow { font-family:system-ui,sans-serif; font-size:.6rem; font-weight:700; letter-spacing:.12em; color:#647664; }
+  .preview-copy h3 { font-size:1.35rem; color:#364c48; line-height:1.2; margin:.25rem 0; }
+  .preview-copy p { font-size:.875rem; color:#63726a; line-height:1.35; margin:0 0 .5rem; }
+  .model-rate { display:inline-block; font-size:.875rem; color:#385f52; background:#e5efe3; border-radius:.5rem; padding:.2rem .5rem; }
+  .model-rate span { color:#6f7f70; }
+  .machine-card { background-image:linear-gradient(120deg,#ffffff8c,#ffffff26); box-shadow:3px 4px 0 #1f29371a; }
+  .machine-info { flex:1; min-width:0; }
+  .machine-info > div { min-width:0; overflow-wrap:anywhere; }
+  .machine-art { display:block; flex-shrink:0; width:5.5rem; height:auto; }
+  .sketch-btn, input, select { min-height:2.75rem; }
+  #formCriar > div { min-width:0; }
+  #inpModelo { font-size:.875rem; }
+  #listaMaquinas { max-height:32rem; }
+  @media(min-width:768px) {
+    .auto-actions { grid-template-columns:1fr 1fr; }
+    .model-preview { grid-template-columns:9rem minmax(0,1fr); gap:1.25rem; padding:.75rem 1rem; }
+    .preview-copy h3 { font-size:1.6rem; }
+    .preview-copy p { font-size:1rem; }
+    .machine-art { width:6.5rem; }
+  }
+  @media(prefers-reduced-motion:reduce) {
+    .auto-pointer, .fumaca, .fumaca2, .engrenagem, .engrenagem-r { animation:none; }
+    .clicavel, .sketch-btn { transition:none; }
+  }
+</style>
+</head>
+<body class="papel min-h-screen text-gray-800">
+
+<!-- ======= CABEÇALHO ======= -->
+<header class="max-w-6xl mx-auto px-4 pt-6 pb-2 text-center">
+  <h1 class="titulo text-4xl md:text-5xl text-gray-900 -rotate-1">🏭 Fábrica do Ventoy</h1>
+  <p class="text-lg text-gray-600 rotate-1">A grande aventura industrial de <span class="font-bold text-amber-700">Guilherme Diassis Cardin (Portador do CPF: 490.xxx.xxx-81)</span></p>
+</header>
+
+<!-- ======= PAINEL DE RECURSOS ======= -->
+<section class="max-w-6xl mx-auto px-4 py-3 grid grid-cols-2 md:grid-cols-4 gap-3">
+  <div class="sketch-border bg-amber-100 p-3 text-center -rotate-1">
+    <div class="text-sm text-gray-500">💾 Pendrives Ventoy</div>
+    <div id="uiPendrives" class="titulo text-2xl">0</div>
+  </div>
+  <div class="sketch-border-2 bg-green-100 p-3 text-center rotate-1">
+    <div class="text-sm text-gray-500">💰 Dinheiro</div>
+    <div id="uiDinheiro" class="titulo text-2xl">R$ 0,00</div>
+  </div>
+  <div class="sketch-border bg-sky-100 p-3 text-center rotate-1">
+    <div class="text-sm text-gray-500">⚙️ Produção / seg</div>
+    <div id="uiPps" class="titulo text-2xl">0</div>
+  </div>
+  <div class="sketch-border-2 bg-pink-100 p-3 text-center -rotate-1">
+    <div class="text-sm text-gray-500">👆 Por clique</div>
+    <div id="uiPorClique" class="titulo text-2xl">1</div>
+  </div>
+</section>
+
+<main class="max-w-6xl mx-auto px-4 pb-10 grid lg:grid-cols-3 gap-5">
+
+  <!-- ======= COLUNA 1: FÁBRICA CLICÁVEL + GUILHERME ======= -->
+  <section class="sketch-border bg-white/70 p-4 relative overflow-hidden">
+    <h2 class="titulo text-2xl mb-1 -rotate-1">⚒️ Linha de Produção</h2>
+    <p class="text-sm text-gray-500 mb-2">Clique na fábrica para Guilherme produzir pendrives!</p>
+
+    <div id="areaClique" class="relative flex justify-center">
+      <button type="button" id="btnFabrica" class="clicavel" title="Clique para produzir!" aria-label="Produzir pendrives na fábrica">
+        <!-- ===== ARTE DESENHADA: FÁBRICA ===== -->
+        <img src="assets/fabrica.svg" width="360" height="320" class="factory-art" alt="Fábrica Ventoy com telhados terracota, janelas de vidro e engrenagens" draggable="false">
+      </button>
+      <div id="autoPendriveRing" class="auto-ring" aria-hidden="true" hidden></div>
+    </div>
+    <p id="uiAutoStatus" class="auto-status">Compre pendrives automáticos para clicar por você.</p>
+
+    <!-- ===== ARTE DESENHADA: GUILHERME ===== -->
+    <div class="hero-row flex items-center gap-3 mt-2">
+      <div class="shrink-0">
+        <img src="assets/guilherme.svg" width="150" height="190" class="hero-art" alt="Guilherme, de pele marrom escura, sorrindo com capacete amarelo, macacão azul e um pendrive na mão" draggable="false">
+      </div>
+      <div class="sketch-border-2 bg-yellow-50 p-2 px-3 text-sm grow">
+        <span class="font-bold">Guilherme:</span>
+        <span id="falaGuilherme">"Bora produzir! Cada clique é um pendrive Ventoy saindo do forno!"</span>
+      </div>
+    </div>
+
+    <!-- melhorias -->
+    <div class="mt-4 space-y-2">
+      <h3 class="titulo text-xl rotate-1">✨ Melhorias</h3>
+      <button id="btnLuva" onclick="comprarLuva()" class="sketch-btn w-full bg-pink-200 p-2 text-left">
+        🧤 Luvas reforçadas (+1 por clique) — <span id="custoLuva" class="font-bold"></span>
+      </button>
+      <button id="btnCafe" onclick="comprarCafe()" class="sketch-btn w-full bg-amber-200 p-2 text-left">
+        ☕ Café do Guilherme (máquinas +25%) — <span id="custoCafe" class="font-bold"></span>
+      </button>
+      <div class="text-xs text-gray-500">Café comprado: <span id="uiNivelCafe">0</span>x · Luvas: <span id="uiNivelLuva">0</span>x</div>
+    </div>
+  </section>
+
+  <!-- ======= COLUNA 2: CRUD DE MÁQUINAS ======= -->
+  <section class="sketch-border-2 bg-white/70 p-4 lg:col-span-2">
+    <section class="auto-shop sketch-border" aria-labelledby="tituloAutomaticos">
+      <div class="auto-shop-heading">
+        <img src="assets/pendrive-auto.svg" class="auto-shop-art" width="64" height="88" alt="" aria-hidden="true">
+        <div>
+          <h2 id="tituloAutomaticos" class="titulo">⚡ Pendrives automáticos</h2>
+          <p>Cada pendrive começa com 1 clique por segundo. Compre mais para acelerar e use as luvas para fortalecer cada clique!</p>
+        </div>
+      </div>
+      <div class="auto-stats">
+        <span>💾 Em uso: <strong id="uiAutoQuantidade">0</strong></span>
+        <span>👆 <strong id="uiAutoCps">0</strong> cliques / seg</span>
+        <span>⚙️ <strong id="uiAutoPps">0</strong> pendrives / seg</span>
+      </div>
+      <div class="auto-actions">
+        <button type="button" id="btnAutoPendrive" onclick="comprarPendriveAutomatico()" class="sketch-btn bg-emerald-200 font-bold">
+          💾 Comprar pendrive — <span id="custoAutoPendrive"></span>
+          <small>+<span id="uiAutoPorUnidade">1 clique</span> / seg · preço aumenta a cada compra</small>
+        </button>
+        <button type="button" id="btnTurboPendrives" onclick="comprarTurboPendrives()" class="sketch-btn bg-amber-200 font-bold">
+          ⚡ Turbo ×2 — <span id="custoTurboPendrives"></span>
+          <small>Dobra os cliques de todos os pendrives · atual: ×<span id="uiTurboPendrives">1</span></small>
+        </button>
+      </div>
+    </section>
+    <h2 class="titulo text-2xl -rotate-1 mb-1">🛠️ Garagem de Máquinas <span class="text-base text-gray-400">(CRUD sem banco de dados!)</span></h2>
+    <p class="text-sm text-gray-500 mb-3">Crie, consulte, atualize e delete suas máquinas. Tudo fica salvo só no navegador (localStorage).</p>
+
+    <!-- CREATE -->
+    <form id="formCriar" class="sketch-border bg-emerald-50 p-3 mb-4 grid md:grid-cols-[minmax(0,1fr)_auto] gap-2 items-end">
+      <div class="md:col-span-2">
+        <label for="inpNome" class="text-sm font-bold">📛 Nome da máquina</label>
+        <input id="inpNome" type="text" maxlength="24" placeholder="Ex.: Ventoyzadora 3000"
+               class="w-full bg-white sketch-border-2 p-1.5 px-3 outline-none" required>
+      </div>
+      <div>
+        <label for="inpModelo" class="text-sm font-bold">🔩 Modelo</label>
+        <select id="inpModelo" class="w-full bg-white sketch-border-2 p-1.5 px-2 outline-none"></select>
+      </div>
+      <button type="submit" id="btnCriar" class="sketch-btn bg-emerald-300 p-2 font-bold">
+        ➕ CRIAR — <span id="custoCriar"></span>
+      </button>
+      <div id="previaModelo" class="model-preview md:col-span-2" aria-live="polite"></div>
+    </form>
+
+    <!-- READ: busca + lista -->
+    <div class="flex flex-wrap gap-2 items-center mb-3">
+      <input id="inpBusca" type="text" placeholder="🔍 Buscar máquina (READ)..." oninput="renderMaquinas()"
+             class="grow bg-white sketch-border p-1.5 px-3 outline-none">
+      <span class="text-sm text-gray-500">Total: <span id="uiTotalMaquinas" class="font-bold">0</span> máquinas</span>
+    </div>
+
+    <div id="listaMaquinas" class="space-y-3 max-h-[420px] overflow-y-auto pr-1"></div>
+    <div id="listaVazia" class="text-center text-gray-400 py-8 text-lg">
+      ✏️ Nenhuma máquina ainda... Crie a primeira acima!
+    </div>
+
+    <!-- rodapé de controle -->
+    <div class="mt-4 flex flex-wrap gap-2 justify-between items-center border-t-2 border-dashed border-gray-400 pt-3">
+      <div class="flex gap-2">
+        <button onclick="salvarJogo(true)" class="sketch-btn bg-sky-200 px-3 py-1">💾 Salvar</button>
+        <button onclick="resetarJogo()" class="sketch-btn bg-red-200 px-3 py-1">🗑️ Resetar tudo</button>
+      </div>
+      <div class="text-xs text-gray-400">Autosave a cada 15s · Sem banco de dados, só localStorage 😉</div>
+    </div>
+  </section>
+</main>
+
+<!-- modal UPDATE -->
+<div id="modalEditar" class="fixed inset-0 bg-black/40 hidden items-center justify-center z-50 p-4">
+  <div class="sketch-border bg-amber-50 p-5 w-full max-w-md">
+    <h3 class="titulo text-2xl mb-3 -rotate-1">✏️ Atualizar máquina (UPDATE)</h3>
+    <label class="text-sm font-bold">Novo nome</label>
+    <input id="inpEditarNome" type="text" maxlength="24" class="w-full bg-white sketch-border-2 p-1.5 px-3 outline-none mb-4">
+    <div class="flex gap-2 justify-end">
+      <button onclick="fecharModal()" class="sketch-btn bg-gray-200 px-4 py-1.5">Cancelar</button>
+      <button onclick="confirmarEdicao()" class="sketch-btn bg-emerald-300 px-4 py-1.5 font-bold">Salvar ✔</button>
+    </div>
+  </div>
+</div>
+
+<!-- toasts -->
+<div id="toasts" class="fixed bottom-4 right-4 space-y-2 z-50"></div>
+
+<script>
+// =====================================================
+//  FÁBRICA DO VENTOY — jogo incremental com CRUD
+//  Protagonista: Guilherme Diassis Cardin
+//  Sem banco de dados: estado em memória + localStorage
+// =====================================================
+
+const MODELOS = [
+  { id:'manivela',  nome:'Manivela Enferrujada', emoji:'🔧', custoBase:50,     pps:1,   cor:'bg-orange-100', descricao:'Engrenagens de cobre e uma boa manivela. O começo de uma grande fábrica.' },
+  { id:'prensa',    nome:'Prensa de Pendrive',   emoji:'🗜️', custoBase:300,    pps:6,   cor:'bg-sky-100', descricao:'Pistão de aço, painel de controle e precisão em cada pendrive.' },
+  { id:'robo',      nome:'Robô Gravador ISO',    emoji:'🤖', custoBase:2000,   pps:35,  cor:'bg-violet-100', descricao:'Um ajudante cheio de personalidade, pronto para gravar sua próxima ISO.' },
+  { id:'esteira',   nome:'Mega Esteira Turbo',   emoji:'🏗️', custoBase:12000,  pps:180, cor:'bg-emerald-100', descricao:'Uma linha automatizada com scanner e roletes que não param.' },
+  { id:'quantica',  nome:'Forja Quântica USB',   emoji:'⚛️', custoBase:75000,  pps:1000,cor:'bg-pink-100', descricao:'Um núcleo de energia quântica para levar sua produção a outra dimensão.' },
+];
+
+const PRECO_PENDRIVE = 2; // R$ por pendrive vendido (vende automático)
+
+const estadoInicial = () => ({
+  pendrives: 0,
+  dinheiro: 0,
+  totalProduzido: 0,
+  luvas: 0,
+  cafes: 0,
+  autoPendrives: 0,
+  turboPendrives: 0,
+  proximoId: 1,
+  maquinas: [] // { id, nome, modelo, nivel, criadaEm }
+});
+let estado = estadoInicial();
+
+let idEditando = null;
+
+// ---------- utilidades ----------
+const escapeHtml = value => String(value).replace(/[&<>"']/g, char => ({'&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'}[char]));
+
+function renderPreviaModelo() {
+  const mod = MODELOS.find(m => m.id === document.getElementById('inpModelo').value) || MODELOS[0];
+  document.getElementById('previaModelo').innerHTML = `
+    <img src="assets/${mod.id}.svg" width="220" height="180" alt="${mod.nome}" class="preview-art">
+    <div class="preview-copy">
+      <span class="model-eyebrow">SEU PRÓXIMO MODELO</span>
+      <h3 class="titulo">${mod.nome}</h3>
+      <p>${mod.descricao}</p>
+      <span class="model-rate">${fmt(mod.pps)} ${mod.pps === 1 ? 'pendrive' : 'pendrives'} / seg <span>· produção base</span></span>
+    </div>`;
+}
+const fmt = n => n >= 1e6 ? (n/1e6).toFixed(2)+'M' : n >= 1e3 ? (n/1e3).toFixed(1)+'k' : Math.floor(n).toString();
+const fmtDin = n => 'R$ ' + n.toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits:2});
+const fmtTaxa = n => n >= 1000 ? fmt(n) : n.toLocaleString('pt-BR', {maximumFractionDigits:2});
+
+function toast(msg, cor='bg-emerald-200') {
+  const t = document.createElement('div');
+  t.className = `toast sketch-border ${cor} px-4 py-2 text-sm`;
+  t.textContent = msg;
+  document.getElementById('toasts').appendChild(t);
+  setTimeout(()=>t.remove(), 2600);
+}
+
+const FALAS = [
+  '"Mais um pendrive Ventoy saindo quentinho!"',
+  '"Essa fábrica vai longe, pode anotar!"',
+  '"Multiboot neles! 💪"',
+  '"Diassis Cardin não para nunca!"',
+  '"Cadê meu café?! Ah, tá na melhoria."',
+  '"Formatar? Aqui a gente só grava ISO!"',
+  '"Um dia compro a Forja Quântica..."'
+];
+function falar() {
+  document.getElementById('falaGuilherme').textContent = FALAS[Math.floor(Math.random()*FALAS.length)];
+}
+setInterval(falar, 8000);
+
+// ---------- cálculos ----------
+const porClique = () => 1 + estado.luvas;
+const multCafe = () => 1 + estado.cafes * 0.25;
+const ppsMaquina = m => {
+  const mod = MODELOS.find(x => x.id === m.modelo);
+  return mod.pps * m.nivel * multCafe();
+};
+const multTurboPendrives = () => Math.pow(2, estado.turboPendrives);
+const cliquesAutomaticos = () => estado.autoPendrives * multTurboPendrives();
+const ppsPendrivesAutomaticos = () => cliquesAutomaticos() * porClique();
+const ppsTotal = () => estado.maquinas.reduce((s,m) => s + ppsMaquina(m), 0) + ppsPendrivesAutomaticos();
+const custoPendriveAutomatico = () => Math.floor(15 * Math.pow(1.15, estado.autoPendrives));
+const custoTurboPendrives = () => Math.floor(150 * Math.pow(2.5, estado.turboPendrives));
+
+function produzir(ganho) {
+  estado.pendrives += ganho;
+  estado.totalProduzido += ganho;
+  estado.dinheiro += ganho * PRECO_PENDRIVE;
+}
+
+function comprarPendriveAutomatico() {
+  const custo = custoPendriveAutomatico();
+  if (estado.dinheiro < custo) return toast('💸 Falta grana para esse pendrive!', 'bg-red-200');
+  estado.dinheiro -= custo;
+  estado.autoPendrives++;
+  toast('💾 Mais um pendrive clicando por você!');
+  atualizarTudo();
+  salvarJogo();
+}
+
+function comprarTurboPendrives() {
+  if (!estado.autoPendrives) return toast('💾 Compre seu primeiro pendrive automático antes do turbo.', 'bg-yellow-200');
+  const custo = custoTurboPendrives();
+  if (estado.dinheiro < custo) return toast('💸 Falta grana para o turbo!', 'bg-red-200');
+  estado.dinheiro -= custo;
+  estado.turboPendrives++;
+  toast('⚡ Seus pendrives agora clicam duas vezes mais rápido!');
+  atualizarTudo();
+  salvarJogo();
+}
+
+function renderPendrivesAutomaticos() {
+  const ring = document.getElementById('autoPendriveRing');
+  ring.innerHTML = '';
+  ring.hidden = estado.autoPendrives === 0;
+  const periodo = Math.max(.45, 1 / multTurboPendrives());
+  ring.style.setProperty('--auto-period', periodo + 's');
+  // Limitar as ilustrações mantém a fábrica legível mesmo com milhares de unidades.
+  const visiveis = Math.min(estado.autoPendrives, 24);
+  for (let i = 0; i < visiveis; i++) {
+    const angulo = i * 360 / visiveis;
+    const rad = angulo * Math.PI / 180;
+    const pendrive = document.createElement('img');
+    pendrive.src = 'assets/pendrive-auto.svg';
+    pendrive.alt = '';
+    pendrive.className = 'auto-pointer';
+    pendrive.style.left = (50 + 43 * Math.sin(rad)) + '%';
+    pendrive.style.top = (50 - 43 * Math.cos(rad)) + '%';
+    pendrive.style.setProperty('--angle', (angulo + 180) + 'deg');
+    pendrive.style.setProperty('--delay', (-i / visiveis * periodo) + 's');
+    ring.appendChild(pendrive);
+  }
+}
+
+const custoLuva = () => Math.floor(25 * Math.pow(1.7, estado.luvas));
+const custoCafe = () => Math.floor(200 * Math.pow(2.1, estado.cafes));
+const custoModelo = mod => Math.floor(mod.custoBase * Math.pow(1.15, estado.maquinas.filter(m=>m.modelo===mod.id).length));
+const custoUpgrade = m => {
+  const mod = MODELOS.find(x => x.id === m.modelo);
+  return Math.floor(mod.custoBase * 0.6 * Math.pow(1.5, m.nivel));
+};
+const valorVenda = m => {
+  const mod = MODELOS.find(x => x.id === m.modelo);
+  return Math.floor(mod.custoBase * 0.4 * m.nivel);
+};
+
+// ---------- clique na fábrica ----------
+document.getElementById('btnFabrica').addEventListener('click', e => {
+  const ganho = porClique();
+  produzir(ganho);
+
+  const area = document.getElementById('areaClique');
+  const pop = document.createElement('div');
+  pop.className = 'pop-flutuante text-amber-700 text-xl titulo';
+  pop.textContent = `+${ganho} 💾`;
+  const r = area.getBoundingClientRect();
+  pop.style.left = ((e.detail === 0 ? r.width / 2 : e.clientX - r.left) - 10) + 'px';
+  pop.style.top = ((e.detail === 0 ? r.height / 2 : e.clientY - r.top) - 10) + 'px';
+  area.appendChild(pop);
+  setTimeout(()=>pop.remove(), 900);
+
+  atualizarPainel();
+});
+
+// ---------- melhorias ----------
+function comprarLuva() {
+  const c = custoLuva();
+  if (estado.dinheiro < c) return toast('💸 Dinheiro insuficiente para as luvas!', 'bg-red-200');
+  estado.dinheiro -= c;
+  estado.luvas++;
+  toast('🧤 Luvas novas! Guilherme clica mais forte!');
+  atualizarTudo();
+}
+function comprarCafe() {
+  const c = custoCafe();
+  if (estado.dinheiro < c) return toast('💸 Sem grana pro cafezinho...', 'bg-red-200');
+  estado.dinheiro -= c;
+  estado.cafes++;
+  toast('☕ Guilherme tomou café! Máquinas +25%!');
+  atualizarTudo();
+}
+
+// =====================================================
+//  C R U D   D E   M Á Q U I N A S
+// =====================================================
+
+// ---- CREATE ----
+document.getElementById('formCriar').addEventListener('submit', e => {
+  e.preventDefault();
+  const nome = document.getElementById('inpNome').value.trim();
+  const modId = document.getElementById('inpModelo').value;
+  const mod = MODELOS.find(m => m.id === modId);
+  const custo = custoModelo(mod);
+
+  if (!nome) return toast('✏️ Dê um nome pra máquina!', 'bg-red-200');
+  if (estado.dinheiro < custo) return toast('💸 Dinheiro insuficiente! Precisa de ' + fmtDin(custo), 'bg-red-200');
+
+  estado.dinheiro -= custo;
+  estado.maquinas.push({
+    id: estado.proximoId++,
+    nome,
+    modelo: modId,
+    nivel: 1,
+    criadaEm: new Date().toLocaleString('pt-BR')
+  });
+  document.getElementById('inpNome').value = '';
+  toast(`✅ CREATE: "${nome}" entrou na linha de produção!`);
+  atualizarTudo();
+});
+
+// ---- READ (render + busca) ----
+function renderMaquinas() {
+  const busca = document.getElementById('inpBusca').value.trim().toLowerCase();
+  const lista = document.getElementById('listaMaquinas');
+  const vazio = document.getElementById('listaVazia');
+  lista.innerHTML = '';
+
+  const filtradas = estado.maquinas.filter(m =>
+    m.nome.toLowerCase().includes(busca) ||
+    MODELOS.find(x=>x.id===m.modelo).nome.toLowerCase().includes(busca)
+  );
+
+  vazio.style.display = filtradas.length ? 'none' : 'block';
+  vazio.textContent = estado.maquinas.length === 0
+    ? '✏️ Nenhuma máquina ainda... Crie a primeira acima!'
+    : '🔍 Nada encontrado com essa busca.';
+
+  filtradas.forEach(m => {
+    const mod = MODELOS.find(x => x.id === m.modelo);
+    const card = document.createElement('div');
+    card.className = `machine-card sketch-border ${mod.cor} p-3 flex flex-wrap gap-3 items-center justify-between`;
+    card.innerHTML = `
+      <div class="machine-info flex items-center gap-3">
+        <img class="machine-art" src="assets/${mod.id}.svg" width="220" height="180" alt="${mod.nome}" loading="lazy">
+        <div>
+          <div class="titulo text-xl leading-tight">${escapeHtml(m.nome)} <span class="text-xs bg-gray-800 text-white rounded-full px-2 py-0.5 align-middle">Nv. ${m.nivel}</span></div>
+          <div class="text-sm text-gray-600">${mod.nome} · ⚙️ ${fmt(ppsMaquina(m))}/seg</div>
+          <div class="text-xs text-gray-400">#${m.id} · criada em ${m.criadaEm}</div>
+        </div>
+      </div>
+      <div class="flex flex-wrap gap-1.5">
+        <button onclick="abrirModal(${m.id})" class="sketch-btn bg-yellow-200 px-2.5 py-1 text-sm" title="Renomear (UPDATE)">✏️ Renomear</button>
+        <button onclick="melhorarMaquina(${m.id})" class="sketch-btn bg-sky-200 px-2.5 py-1 text-sm" title="Subir nível (UPDATE)">⬆️ ${fmtDin(custoUpgrade(m))}</button>
+        <button onclick="deletarMaquina(${m.id})" class="sketch-btn bg-red-200 px-2.5 py-1 text-sm" title="Vender (DELETE)">🗑️ +${fmtDin(valorVenda(m))}</button>
+      </div>`;
+    lista.appendChild(card);
+  });
+
+  document.getElementById('uiTotalMaquinas').textContent = estado.maquinas.length;
+}
+
+// ---- UPDATE (renomear via modal) ----
+function abrirModal(id) {
+  idEditando = id;
+  const m = estado.maquinas.find(x => x.id === id);
+  document.getElementById('inpEditarNome').value = m.nome;
+  document.getElementById('modalEditar').classList.replace('hidden','flex');
+  document.getElementById('inpEditarNome').focus();
+}
+function fecharModal() {
+  idEditando = null;
+  document.getElementById('modalEditar').classList.replace('flex','hidden');
+}
+function confirmarEdicao() {
+  const novo = document.getElementById('inpEditarNome').value.trim();
+  if (!novo) return toast('✏️ O nome não pode ficar vazio!', 'bg-red-200');
+  const m = estado.maquinas.find(x => x.id === idEditando);
+  if (m) {
+    const antigo = m.nome;
+    m.nome = novo;
+    toast(`🔁 UPDATE: "${antigo}" agora é "${novo}"!`, 'bg-yellow-200');
+  }
+  fecharModal();
+  atualizarTudo();
+}
+
+// ---- UPDATE (nível) ----
+function melhorarMaquina(id) {
+  const m = estado.maquinas.find(x => x.id === id);
+  const c = custoUpgrade(m);
+  if (estado.dinheiro < c) return toast('💸 Falta grana pro upgrade! Precisa de ' + fmtDin(c), 'bg-red-200');
+  estado.dinheiro -= c;
+  m.nivel++;
+  toast(`⬆️ UPDATE: "${m.nome}" subiu pro nível ${m.nivel}!`, 'bg-sky-200');
+  atualizarTudo();
+}
+
+// ---- DELETE ----
+function deletarMaquina(id) {
+  const m = estado.maquinas.find(x => x.id === id);
+  if (!confirm(`Vender "${m.nome}" por ${fmtDin(valorVenda(m))}? Guilherme vai chorar... 😢`)) return;
+  estado.dinheiro += valorVenda(m);
+  estado.maquinas = estado.maquinas.filter(x => x.id !== id);
+  toast(`🗑️ DELETE: "${m.nome}" foi vendida!`, 'bg-red-200');
+  atualizarTudo();
+}
+
+// =====================================================
+//  LOOP, UI E PERSISTÊNCIA
+// =====================================================
+function atualizarPainel() {
+  document.getElementById('uiPendrives').textContent = fmt(estado.pendrives);
+  document.getElementById('uiDinheiro').textContent = fmtDin(estado.dinheiro);
+  document.getElementById('uiPps').textContent = fmtTaxa(ppsTotal());
+  document.getElementById('uiPorClique').textContent = porClique();
+  document.getElementById('custoLuva').textContent = fmtDin(custoLuva());
+  document.getElementById('custoCafe').textContent = fmtDin(custoCafe());
+  document.getElementById('uiNivelLuva').textContent = estado.luvas;
+  document.getElementById('uiNivelCafe').textContent = estado.cafes;
+  document.getElementById('btnLuva').disabled = estado.dinheiro < custoLuva();
+  document.getElementById('btnCafe').disabled = estado.dinheiro < custoCafe();
+  document.getElementById('uiAutoQuantidade').textContent = fmt(estado.autoPendrives);
+  document.getElementById('uiAutoCps').textContent = fmtTaxa(cliquesAutomaticos());
+  document.getElementById('uiAutoPps').textContent = fmtTaxa(ppsPendrivesAutomaticos());
+  document.getElementById('uiAutoPorUnidade').textContent = `${fmtTaxa(multTurboPendrives())} ${multTurboPendrives() === 1 ? 'clique' : 'cliques'}`;
+  document.getElementById('uiTurboPendrives').textContent = fmt(multTurboPendrives());
+  document.getElementById('custoAutoPendrive').textContent = fmtDin(custoPendriveAutomatico());
+  document.getElementById('custoTurboPendrives').textContent = fmtDin(custoTurboPendrives());
+  document.getElementById('btnAutoPendrive').disabled = estado.dinheiro < custoPendriveAutomatico();
+  document.getElementById('btnTurboPendrives').disabled = !estado.autoPendrives || estado.dinheiro < custoTurboPendrives();
+  document.getElementById('uiAutoStatus').textContent = estado.autoPendrives
+    ? `💾 ${fmtTaxa(cliquesAutomaticos())} cliques automáticos / seg · +${fmtTaxa(ppsPendrivesAutomaticos())} pendrives / seg`
+    : 'Compre pendrives automáticos para clicar por você.';
+
+  const mod = MODELOS.find(m => m.id === document.getElementById('inpModelo').value) || MODELOS[0];
+  const custo = custoModelo(mod);
+  document.getElementById('custoCriar').textContent = fmtDin(custo);
+  document.getElementById('btnCriar').disabled = estado.dinheiro < custo;
+}
+function atualizarTudo() { atualizarPainel(); renderMaquinas(); renderPendrivesAutomaticos(); }
+
+// Produção pelo tempo decorrido, inclusive se o navegador atrasar um tick.
+let ultimoTick = performance.now();
+setInterval(() => {
+  const agora = performance.now();
+  const segundos = Math.max(0, (agora - ultimoTick) / 1000);
+  ultimoTick = agora;
+  const ganho = ppsTotal() * segundos;
+  if (ganho > 0) {
+    produzir(ganho);
+    atualizarPainel();
+  }
+}, 100);
+
+// seletor de modelos
+const sel = document.getElementById('inpModelo');
+MODELOS.forEach(m => {
+  const o = document.createElement('option');
+  o.value = m.id;
+  o.textContent = `${m.emoji} ${m.nome} (${m.pps}/s)`;
+  sel.appendChild(o);
+});
+sel.addEventListener('change', () => { atualizarPainel(); renderPreviaModelo(); });
+renderPreviaModelo();
+
+// persistência (localStorage — sem banco de dados!)
+const CHAVE = 'fabricaDoVentoy_save';
+function salvarJogo(avisar=false) {
+  localStorage.setItem(CHAVE, JSON.stringify(estado));
+  if (avisar) toast('💾 Jogo salvo no navegador!');
+}
+function carregarJogo() {
+  const dados = localStorage.getItem(CHAVE);
+  if (dados) {
+    try {
+      estado = Object.assign(estadoInicial(), JSON.parse(dados));
+      for (const campo of ['autoPendrives', 'turboPendrives']) {
+        if (!Number.isSafeInteger(estado[campo]) || estado[campo] < 0) estado[campo] = 0;
+      }
+      toast('📂 Progresso carregado, bem-vindo de volta!', 'bg-sky-200');
+    }
+    catch(e) { console.warn('Save corrompido, começando do zero.'); }
+  }
+}
+function resetarJogo() {
+  if (!confirm('Resetar TODA a fábrica? Guilherme vai ter que recomeçar do zero! 😱')) return;
+  localStorage.removeItem(CHAVE);
+  estado = estadoInicial();
+  ultimoTick = performance.now();
+  toast('🧹 Fábrica resetada!', 'bg-red-200');
+  atualizarTudo();
+}
+setInterval(() => salvarJogo(false), 15000);
+window.addEventListener('beforeunload', () => salvarJogo(false));
+
+// teclado no modal
+document.getElementById('inpEditarNome').addEventListener('keydown', e => {
+  if (e.key === 'Enter') confirmarEdicao();
+  if (e.key === 'Escape') fecharModal();
+});
+
+// início
+carregarJogo();
+atualizarTudo();
+</script>
+</body>
+</html>

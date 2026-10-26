@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="320" viewBox="0 0 360 320" role="img" aria-labelledby="title">
+  <title id="title">Fábrica Ventoy ilustrada, com telhados terracota, janelas iluminadas e engrenagens</title>
+  <defs>
+    <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#e0f2f1"/><stop offset="1" stop-color="#fff8e7"/></linearGradient>
+    <linearGradient id="wall" x2="0" y2="1"><stop stop-color="#f7bb92"/><stop offset="1" stop-color="#e18a6c"/></linearGradient>
+    <linearGradient id="roof" x2="0" y2="1"><stop stop-color="#e47f65"/><stop offset="1" stop-color="#ad534c"/></linearGradient>
+    <linearGradient id="glass" x2="1" y2="1"><stop stop-color="#e0faf5"/><stop offset="1" stop-color="#65a9b1"/></linearGradient>
+    <linearGradient id="metal" x2="1" y2="1"><stop stop-color="#dde6e4"/><stop offset="1" stop-color="#7e969c"/></linearGradient>
+    <linearGradient id="door" x2="0" y2="1"><stop stop-color="#536581"/><stop offset="1" stop-color="#29384e"/></linearGradient>
+    <path id="gear-shape" d="M-6.314 -15.244L-3.712 -16.077L-3.647 -20.681L3.647 -20.681L3.712 -16.077L6.314 -15.244L8.744 -13.993L12.045 -17.202L17.202 -12.045L13.993 -8.744L15.244 -6.314L16.077 -3.712L20.681 -3.647L20.681 3.647L16.077 3.712L15.244 6.314L13.993 8.744L17.202 12.045L12.045 17.202L8.744 13.993L6.314 15.244L3.712 16.077L3.647 20.681L-3.647 20.681L-3.712 16.077L-6.314 15.244L-8.744 13.993L-12.045 17.202L-17.202 12.045L-13.993 8.744L-15.244 6.314L-16.077 3.712L-20.681 3.647L-20.681 -3.647L-16.077 -3.712L-15.244 -6.314L-13.993 -8.744L-17.202 -12.045L-12.045 -17.202L-8.744 -13.993Z"/>
+  </defs>
+  <style>
+    .line{stroke:#354052;stroke-width:3;stroke-linejoin:round;stroke-linecap:round}
+    .smoke{animation:smoke 3.6s ease-out infinite;transform-box:fill-box;transform-origin:center}
+    .smoke2{animation-delay:-1.8s}
+    .gear{animation:spin 18s linear infinite;transform-box:fill-box;transform-origin:center}
+    .gear-reverse{animation-direction:reverse;animation-duration:15.3s}
+    @keyframes smoke{0%{opacity:0;transform:translateY(8px) scale(.65)}25%{opacity:.55}100%{opacity:0;transform:translateY(-28px) scale(1.4)}}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    @media(prefers-reduced-motion:reduce){.smoke,.gear{animation:none}}
+  </style>
+  <path d="M35 178C12 107 57 40 137 40c54-36 139-17 169 41 34 54 19 130-18 171H64Z" fill="url(#sky)"/>
+  <circle cx="276" cy="61" r="24" fill="#ffdfa0"/>
+  <circle cx="276" cy="61" r="16" fill="#fff1c5"/>
+  <g stroke="#e9b65d" stroke-width="2.5" stroke-linecap="round"><path d="M276 28v-6m0 78v-6m-33-33h-6m78 0h-6m-56-24-4-4m51 51-4-4m0-43 4-4m-51 51 4-4"/></g>
+  <path d="M40 85c0-8 11-12 18-7 4-16 26-18 32-2 12-2 20 4 20 12H40" fill="#fffdf5"/>
+  <path d="M225 113c1-8 10-10 16-6 5-12 22-12 26 0 8-1 14 4 15 10h-57" fill="#fffdf5"/>
+  <g fill="#95aaa9"><path class="smoke" d="M90 71c-20-4-19-23-4-27 0-17 26-20 30-4 20 3 18 24 4 28Z"/><ellipse class="smoke smoke2" cx="101" cy="53" rx="16" ry="12"/></g>
+  <ellipse cx="181" cy="276" rx="151" ry="18" fill="#adc2ad" opacity=".25"/>
+  <g class="line">
+    <path d="M80 136 77 79h26l5 57" fill="url(#roof)"/>
+    <path d="M75 78h30v10H76Z" fill="#cb705c"/>
+    <path d="M83 98h18m-17 15h18m-15 14h17" stroke="#f5b293" stroke-width="2"/>
+    <path d="m57 148 221-5 27 18v100l-26 14-222-8Z" fill="url(#wall)"/>
+    <path d="m278 145 27 16v100l-27 14Z" fill="#bd6d5d"/>
+    <path d="M55 150v-36l55 30v-32l56 30v-32l56 30v-32l56 33v16Z" fill="url(#roof)"/>
+    <path d="m62 119 47 26m8-26 48 25m8-27 47 25m9-26 46 27" stroke="#ffc39b" stroke-width="2"/>
+    <path d="M56 158h222" stroke="#ffd6af" stroke-width="4"/>
+    <path d="M58 254h221v17H58Z" fill="#bf7764"/>
+    <path d="M139 267v-57c0-12 10-20 23-20s23 8 23 20v57Z" fill="url(#door)"/>
+    <path d="M146 264v-51c0-11 8-16 16-16 9 0 16 5 16 16v51" stroke="#8296a8" stroke-width="2" fill="none"/>
+    <path d="M161 205v58" stroke="#202e43" stroke-width="2"/>
+    <circle cx="171" cy="234" r="2" fill="#ffda8a" stroke="none"/>
+    <rect x="73" y="174" width="43" height="39" rx="6" fill="url(#glass)"/>
+    <rect x="218" y="173" width="43" height="39" rx="6" fill="url(#glass)"/>
+    <path d="M94 176v35m-19-18h39m125-18v35m-19-18h39" stroke-width="2"/>
+    <path d="m79 179 9-1-9 10m145-9 9-1-9 10" stroke="#fff" stroke-width="3"/>
+    <path d="M70 217h48m97-1h48" stroke="#a86255" stroke-width="4"/>
+    <path d="M122 166v-12m83 12v-12" stroke-width="2"/>
+    <rect x="121" y="165" width="84" height="25" rx="6" fill="#fff0c8"/>
+  </g>
+  <text x="163" y="182" text-anchor="middle" font-family="Verdana,sans-serif" font-size="12" font-weight="bold" letter-spacing="1.5" fill="#5d4643">VENTOY</text>
+  <g class="line" fill="url(#metal)">
+    <!-- Cada rotor é simétrico em torno de (0,0); o eixo fica fixo na parede. -->
+    <g transform="translate(96 244)">
+      <circle cy="2" r="21" fill="#794a40" opacity=".18" stroke="none"/>
+      <g class="gear">
+        <use href="#gear-shape"/>
+        <circle r="11" fill="#91a6ad" stroke-width="2"/>
+        <path d="M0-11V11M-11 0H11" fill="none" stroke="#d6e0dc" stroke-width="2"/>
+      </g>
+      <circle r="5" fill="#f2cd8f" stroke-width="2"/>
+      <circle r="1.5" fill="#526571" stroke="none"/>
+    </g>
+    <g transform="translate(239 244) scale(.85)">
+      <circle cy="2" r="21" fill="#794a40" opacity=".18" stroke="none"/>
+      <g class="gear gear-reverse">
+        <use href="#gear-shape"/>
+        <circle r="11" fill="#91a6ad" stroke-width="2"/>
+        <path d="M0-11V11M-11 0H11" fill="none" stroke="#d6e0dc" stroke-width="2"/>
+      </g>
+      <circle r="5" fill="#f2cd8f" stroke-width="2"/>
+      <circle r="1.5" fill="#526571" stroke="none"/>
+    </g>
+  </g>
+  <g stroke="#bb715e" stroke-width="1.8" opacity=".55"><path d="M62 230h17m-9 0v9m47-15h12m-8 0v8m77 11h19m-9 0v9m56-28h10m-14 17h16"/></g>
+  <g class="line"><path d="M126 273h72v6h-72" fill="#c6b6a0"/><path d="M41 269q-6-20-12-16 2 14 12 16-1-26 9-23 4 13-9 23m265 0q-3-23 7-23 6 12-7 23 10-18 17-12-2 10-17 12" fill="#7b9b79" stroke="#577c65" stroke-width="2"/><path d="M38 279h85m83 0h116" stroke="#8e9c85" stroke-width="2"/></g>
+  <g fill="#f0c271"><circle cx="49" cy="252" r="3"/><circle cx="319" cy="254" r="3"/></g>
+</svg>

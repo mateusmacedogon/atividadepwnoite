@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="180" viewBox="0 0 220 180" role="img" aria-labelledby="title">
+    <title id="title">Manivela Enferrujada — ilustração da máquina</title>
+    <defs>
+      <linearGradient id="body" x2=".8" y2="1"><stop stop-color="#f9cf96"/><stop offset="1" stop-color="#c77c53"/></linearGradient>
+      <linearGradient id="metal" x2=".5" y2="1"><stop stop-color="#e5ece7"/><stop offset=".5" stop-color="#b5c4c7"/><stop offset="1" stop-color="#889eaa"/></linearGradient>
+      <radialGradient id="halo"><stop stop-color="#efc378" stop-opacity=".35"/><stop offset="1" stop-color="#efc378" stop-opacity="0"/></radialGradient>
+    </defs>
+    <ellipse cx="110" cy="89" rx="100" ry="83" fill="url(#halo)"/>
+    <ellipse cx="110" cy="158" rx="76" ry="9" fill="#526172" opacity=".12"/>
+    <g stroke="#354052" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"><path d="M52 132h104l11 9v13H41v-13Z" fill="url(#body)"/>
+      <path d="m51 141 109 0" stroke="#ffdfaf" stroke-width="2"/>
+      <path d="M66 133V68h76v65" fill="url(#body)"/>
+      <path d="M70 72h68v12H70Z" fill="#ffe5b8" stroke-width="2"/>
+      <rect x="78" y="91" width="52" height="30" rx="5" fill="#4d5965"/>
+      <path d="M83 97h42m-42 6h42m-42 6h42" stroke="#83959a" stroke-width="2"/>
+      <circle cx="150" cy="101" r="26" fill="#ad6950"/>
+      <circle cx="150" cy="101" r="21" fill="url(#metal)"/>
+      <circle cx="150" cy="101" r="12" fill="#5f6e76"/>
+      <path d="m150 101 20-25 11 3" fill="none" stroke="#42505d" stroke-width="7"/>
+      <path d="m150 101 20-25 11 3" fill="none" stroke="#acbabe" stroke-width="3"/>
+      <rect x="175" y="71" width="14" height="18" rx="6" fill="#744c3d"/>
+      <circle cx="150" cy="101" r="5" fill="#e4b773"/>
+      <rect x="40" y="93" width="22" height="34" rx="4" fill="url(#metal)"/>
+      <path d="M44 101h14m-14 7h14" stroke="#fff6dc" stroke-width="2"/>
+      <path d="M80 63h49v-9H80Z" fill="#7d8f97"/><path d="M90 54V38h28v16" fill="url(#metal)"/>
+      <path d="M98 41v7m11-7v7" stroke="#5a6a79" stroke-width="2"/>
+      <g fill="#8c5a44" stroke="none"><circle cx="73" cy="128" r="3"/><circle cx="132" cy="88" r="2"/><path d="m64 72 7 8-6 2m67 41 6 4-6 4"/></g>
+      <g fill="#ffe1a1" stroke-width="1.5"><circle cx="57" cy="148" r="2.5"/><circle cx="150" cy="148" r="2.5"/></g></g>
+  </svg>

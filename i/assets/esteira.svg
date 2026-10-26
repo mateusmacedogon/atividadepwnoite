@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="180" viewBox="0 0 220 180" role="img" aria-labelledby="title">
+    <title id="title">Mega Esteira Turbo — ilustração da máquina</title>
+    <defs>
+      <linearGradient id="body" x2=".8" y2="1"><stop stop-color="#b2d6be"/><stop offset="1" stop-color="#638f81"/></linearGradient>
+      <linearGradient id="metal" x2=".5" y2="1"><stop stop-color="#e5ece7"/><stop offset=".5" stop-color="#b5c4c7"/><stop offset="1" stop-color="#889eaa"/></linearGradient>
+      <radialGradient id="halo"><stop stop-color="#9dceae" stop-opacity=".35"/><stop offset="1" stop-color="#9dceae" stop-opacity="0"/></radialGradient>
+    </defs>
+    <ellipse cx="110" cy="89" rx="100" ry="83" fill="url(#halo)"/>
+    <ellipse cx="110" cy="158" rx="76" ry="9" fill="#526172" opacity=".12"/>
+    <g stroke="#354052" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"><path d="M41 130v23m135-23v23" stroke="#4f6b68" stroke-width="9"/>
+      <path d="M33 154h19m115 0h21" stroke-width="5"/>
+      <rect x="26" y="107" width="166" height="31" rx="15" fill="#455b64"/>
+      <rect x="30" y="111" width="158" height="22" rx="11" fill="url(#metal)" stroke-width="2"/>
+      <g fill="#687f88" stroke-width="1.5"><circle cx="42" cy="122" r="7"/><circle cx="64" cy="122" r="7"/><circle cx="86" cy="122" r="7"/><circle cx="108" cy="122" r="7"/><circle cx="130" cy="122" r="7"/><circle cx="152" cy="122" r="7"/><circle cx="176" cy="122" r="7"/></g>
+      <path d="M31 111h152" stroke="#dff0de" stroke-width="2"/>
+      <path d="M83 106V47h58v59h-14V61H97v45Z" fill="url(#body)"/>
+      <path d="M89 53h45" stroke="#e0f4dc" stroke-width="2"/>
+      <rect x="104" y="63" width="17" height="22" rx="3" fill="#4d6b67"/>
+      <path d="M108 76h9" stroke="#9cf0c6" stroke-width="2"/>
+      <path d="M107 86v10m9-10v10" stroke="#a4ead1" stroke-width="2"/>
+      <g fill="#eec473" stroke-width="2"><rect x="44" y="93" width="23" height="12" rx="3"/><rect x="101" y="93" width="23" height="12" rx="3"/><rect x="156" y="93" width="23" height="12" rx="3"/></g>
+      <g fill="url(#metal)" stroke-width="1.5"><path d="M67 96h6v6h-6m57-6h6v6h-6m55-6h6v6h-6"/></g>
+      <rect x="147" y="47" width="32" height="35" rx="5" fill="url(#body)"/>
+      <rect x="153" y="53" width="20" height="14" rx="2" fill="#354c58" stroke-width="1.5"/>
+      <path d="m157 62 3-4 3 3 5-5" fill="none" stroke="#b6ead5" stroke-width="1.5"/>
+      <circle cx="157" cy="74" r="2.5" fill="#f7d17f" stroke-width="1"/><circle cx="169" cy="74" r="2.5" fill="#a0e6c0" stroke-width="1"/>
+      <path d="M163 83v12h-20" fill="none" stroke-width="2"/>
+      <path d="m48 71 17 0-4-4m-20 12h24l-4 4" fill="none" stroke="#8daf9b" stroke-width="2"/></g>
+  </svg>

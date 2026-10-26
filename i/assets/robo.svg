@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="180" viewBox="0 0 220 180" role="img" aria-labelledby="title">
+    <title id="title">Robô Gravador ISO — ilustração da máquina</title>
+    <defs>
+      <linearGradient id="body" x2=".8" y2="1"><stop stop-color="#d2c2eb"/><stop offset="1" stop-color="#8976b1"/></linearGradient>
+      <linearGradient id="metal" x2=".5" y2="1"><stop stop-color="#e5ece7"/><stop offset=".5" stop-color="#b5c4c7"/><stop offset="1" stop-color="#889eaa"/></linearGradient>
+      <radialGradient id="halo"><stop stop-color="#baabe2" stop-opacity=".35"/><stop offset="1" stop-color="#baabe2" stop-opacity="0"/></radialGradient>
+    </defs>
+    <ellipse cx="110" cy="89" rx="100" ry="83" fill="url(#halo)"/>
+    <ellipse cx="110" cy="158" rx="76" ry="9" fill="#526172" opacity=".12"/>
+    <g stroke="#354052" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"><path d="M72 129h71l12 13v12H59v-12Z" fill="url(#body)"/>
+      <path d="M76 147h61" stroke="#eee2fa" stroke-width="2"/>
+      <path d="M82 131V91h45v40" fill="url(#body)"/>
+      <rect x="91" y="105" width="27" height="19" rx="4" fill="#455268"/>
+      <path d="m96 113 4 4 11-9" stroke="#a0ebdb" stroke-width="2.5" fill="none"/>
+      <path d="M104 43V32m-1 0h2"/><circle cx="104" cy="29" r="4" fill="#efc474" stroke-width="2"/>
+      <rect x="71" y="48" width="67" height="45" rx="14" fill="url(#body)"/>
+      <path d="M80 52h47" stroke="#f1e8ff" stroke-width="2"/>
+      <rect x="79" y="59" width="51" height="24" rx="9" fill="#35455b" stroke-width="2"/>
+      <path d="M89 69q3-6 6 0m17 0q3-6 6 0" fill="none" stroke="#b4f2e4" stroke-width="3"/>
+      <path d="M100 75q4 4 8 0" fill="none" stroke="#b4f2e4" stroke-width="1.5"/>
+      <rect x="63" y="61" width="8" height="19" rx="3" fill="url(#metal)"/><rect x="138" y="61" width="8" height="19" rx="3" fill="url(#metal)"/>
+      <path d="m83 97-25 16-14-16m82 0 28 13 13-20" stroke="#6d6296" stroke-width="12" fill="none"/>
+      <path d="m83 97-25 16-14-16m82 0 28 13 13-20" stroke="#c3b5e0" stroke-width="6" fill="none"/>
+      <g fill="url(#metal)"><circle cx="59" cy="112" r="7"/><circle cx="154" cy="110" r="7"/><circle cx="82" cy="98" r="6"/><circle cx="127" cy="98" r="6"/></g>
+      <path d="m41 98-9-9 3-7m10 13 5-11-6-6m120 14-2-12 5-4m1 15 10-7-1-7" fill="none" stroke-width="3"/>
+      <g transform="rotate(-20 172 69)"><rect x="164" y="56" width="15" height="23" rx="3" fill="#efc474" stroke-width="2"/><path d="M167 56v-7h9v7" fill="url(#metal)" stroke-width="1.5"/><path d="M169 67h5" stroke="#936b45" stroke-width="2"/></g>
+      <path d="M33 146h17m122 0h16" stroke="#b9abc9" stroke-width="2"/></g>
+  </svg>

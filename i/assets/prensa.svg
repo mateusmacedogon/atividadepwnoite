@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="180" viewBox="0 0 220 180" role="img" aria-labelledby="title">
+    <title id="title">Prensa de Pendrive — ilustração da máquina</title>
+    <defs>
+      <linearGradient id="body" x2=".8" y2="1"><stop stop-color="#b1d8e5"/><stop offset="1" stop-color="#5e8fa8"/></linearGradient>
+      <linearGradient id="metal" x2=".5" y2="1"><stop stop-color="#e5ece7"/><stop offset=".5" stop-color="#b5c4c7"/><stop offset="1" stop-color="#889eaa"/></linearGradient>
+      <radialGradient id="halo"><stop stop-color="#92c8de" stop-opacity=".35"/><stop offset="1" stop-color="#92c8de" stop-opacity="0"/></radialGradient>
+    </defs>
+    <ellipse cx="110" cy="89" rx="100" ry="83" fill="url(#halo)"/>
+    <ellipse cx="110" cy="158" rx="76" ry="9" fill="#526172" opacity=".12"/>
+    <g stroke="#354052" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"><path d="M47 136h124v17H47Z" fill="url(#body)"/><path d="M56 153v5m106-5v5" stroke-width="7"/>
+      <path d="M56 132V55h19v77m73 0V55h19v77" fill="url(#metal)"/>
+      <rect x="48" y="40" width="124" height="26" rx="6" fill="url(#body)"/>
+      <path d="M55 45h110" stroke="#e2f8f6" stroke-width="2"/>
+      <path d="M93 66v26h34V66" fill="url(#metal)"/>
+      <path d="M92 76h36m-36 7h36" stroke="#758e9a" stroke-width="2"/>
+      <path d="M84 93h52v14H84Z" fill="#4c667b"/>
+      <path d="M82 125h56v10H82Z" fill="#43556c"/>
+      <path d="m84 129 7 6m5-6 7 6m5-6 7 6m5-6 7 6m5-6 5 4" stroke="#f1c269" stroke-width="4"/>
+      <rect x="99" y="111" width="22" height="12" rx="3" fill="#f0c269" stroke-width="2"/>
+      <path d="M121 114h7v6h-7" fill="url(#metal)" stroke-width="1.5"/>
+      <rect x="151" y="83" width="25" height="37" rx="4" fill="#35495f"/>
+      <rect x="156" y="89" width="15" height="11" rx="2" fill="#b5eee0" stroke="none"/>
+      <circle cx="159" cy="109" r="3" fill="#edbd68" stroke-width="1.2"/><circle cx="169" cy="109" r="3" fill="#de8d79" stroke-width="1.2"/>
+      <path d="M167 120v12" fill="none"/>
+      <circle cx="110" cy="52" r="7" fill="#fff4d7" stroke-width="2"/><path d="m110 52 3-3" stroke-width="1.5"/>
+      <g fill="#d9e9e8" stroke-width="1.5"><circle cx="58" cy="53" r="2"/><circle cx="161" cy="53" r="2"/><circle cx="57" cy="145" r="2"/><circle cx="161" cy="145" r="2"/></g></g>
+  </svg>
